@@ -1,18 +1,22 @@
-"use client"
+'use client'
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
-  let downloadURL = ''
-  const ua = navigator.userAgent
+  const [downloadURL, setDownloadURL] = useState('')
 
-  if (ua.includes("Macintosh")){
-    downloadURL = 'https://github.com/OmniLite/omnilite/releases/download/v0.18.2/omnilite-0.18.2-osx-unsigned.dmg'
-  } else if (ua.includes("Windows")) {
-    downloadURL = 'https://github.com/OmniLite/omnilite/releases/download/v0.18.2/omnilite-0.18.2-win64-setup-unsigned.exe'
-  } else {
-    downloadURL = 'https://github.com/OmniLite/omnilite/releases/tag/v0.18.2'
-  }
+  useEffect(() => {
+    const ua = navigator.userAgent
+
+    if (ua.includes("Macintosh")){
+      setDownloadURL('https://github.com/OmniLite/omnilite/releases/download/v0.18.2/omnilite-0.18.2-osx-unsigned.dmg')
+    } else if (ua.includes("Windows")) {
+      setDownloadURL('https://github.com/OmniLite/omnilite/releases/download/v0.18.2/omnilite-0.18.2-win64-setup-unsigned.exe')
+    } else {
+      setDownloadURL('https://github.com/OmniLite/omnilite/releases/tag/v0.18.2')
+    }
+  }, [])
 
   return (
     <section>
